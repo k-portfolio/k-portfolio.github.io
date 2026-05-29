@@ -1,0 +1,51 @@
+---
+import Base from '../layouts/Base.astro';
+import WorkCard from '../components/WorkCard.astro';
+import { getCollection } from 'astro:content';
+import { SITE_TITLE } from '../consts';
+
+// 表示順（order 昇順）に並べ替え
+const works = (await getCollection('works')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+---
+
+<Base title={SITE_TITLE}>
+  <!-- ============================================================
+       プロフィール（F-01）: 以下の内容はご自身に合わせて編集してください
+       ============================================================ -->
+  <section class="profile">
+    <h1>（ハンドル名）</h1>
+    <p class="lead">バックエンドエンジニアを志望しています。</p>
+    <ul class="meta-list">
+      <li>インフラエンジニア実務 1年</li>
+      <li>CCNA 保持</li>
+    </ul>
+    <ul class="tags">
+      <!-- 保持スキルはご自身の内容に編集してください -->
+      <li class="tag">Linux</li>
+      <li class="tag">ネットワーク</li>
+      <li class="tag">CCNA</li>
+      <li class="tag">Docker</li>
+      <li class="tag">Git</li>
+    </ul>
+  </section>
+
+  <!-- ============================================================
+       成果物一覧（F-02）: src/content/works/ の .md から自動生成
+       ============================================================ -->
+  <section id="works">
+    <h2 class="section-title">成果物</h2>
+    {
+      works.length === 0 ? (
+        <p>
+          成果物はまだありません。<code>src/content/works/</code> に Markdown を追加してください。
+        </p>
+      ) : (
+        <div class="work-grid">
+          {works.map((w) => <WorkCard work={w} />)}
+        </div>
+      )
+    }
+  </section>
+</Base>

@@ -1,0 +1,48 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+// 各成果物の詳細ページを静的生成（F-03）
+export async function getStaticPaths() {
+  const works = await getCollection('works');
+  return works.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { title, summary, tech, repo, demo, thumbnail } = entry.data;
+const { Content } = await render(entry);
+---
+
+<Base title={title} description={summary}>
+  <article class="work-detail">
+    <a href="/#works" class="back">← 一覧に戻る</a>
+    <h1>{title}</h1>
+    <p class="lead">{summary}</p>
+
+    <ul class="tags">
+      {tech.map((t) => <li class="tag">{t}</li>)}
+    </ul>
+
+    <div class="links">
+      <a class="btn btn-primary" href={repo} target="_blank" rel="noopener noreferrer">
+        GitHub リポジトリ
+      </a>
+      {
+        demo && (
+          <a class="btn btn-secondary" href={demo} target="_blank" rel="noopener noreferrer">
+            デモを見る
+          </a>
+        )
+      }
+    </div>
+
+    {thumbnail && <img class="screenshot" src={thumbnail} alt={`${title} のスクリーンショット`} loading="lazy" />}
+
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</Base>

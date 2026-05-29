@@ -1,0 +1,29 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  work: CollectionEntry<'works'>;
+}
+const { work } = Astro.props;
+const { title, summary, tech, thumbnail } = work.data;
+const url = `/works/${work.id}/`;
+---
+
+<article class="work-card">
+  <a href={url} class="card-link">
+    {
+      thumbnail ? (
+        <img class="thumb" src={thumbnail} alt={`${title} のサムネイル`} loading="lazy" width="640" height="360" />
+      ) : (
+        <div class="thumb thumb-placeholder" aria-hidden="true">{title.charAt(0)}</div>
+      )
+    }
+    <div class="card-body">
+      <h3>{title}</h3>
+      <p>{summary}</p>
+      <ul class="tags">
+        {tech.slice(0, 5).map((t) => <li class="tag">{t}</li>)}
+      </ul>
+    </div>
+  </a>
+</article>
