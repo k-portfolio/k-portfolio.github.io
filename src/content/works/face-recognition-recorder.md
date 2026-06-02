@@ -3,7 +3,7 @@ title: "顔検出レコーダー"
 summary: "ログイン認証付きのWebアプリ。カメラに顔が映っている間だけ録画し、録画データをDBに保存・一覧・ダウンロードできる。OWASP Top 10 を意識したセキュリティ実装が特徴。"
 tech: ["Python", "Flask", "Flask-SQLAlchemy", "OpenCV", "Flask-WTF", "Werkzeug"]
 repo: "https://github.com/k-portfolio/face-recognition-recorder"
-order: 2
+order: 3
 ---
 
 ## 概要

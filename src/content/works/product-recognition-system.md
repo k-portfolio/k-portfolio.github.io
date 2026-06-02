@@ -3,7 +3,7 @@ title: "商品認識AI接客システム"
 summary: "カメラに映した商品を Gemini Vision で認識し、商品DBと照合した上で、AI接客スタッフとして自然な日本語で質問対応する Web アプリ。FastAPI + Streamlit + SQLite の3層構成。"
 tech: ["Python", "FastAPI", "Streamlit", "Google Gemini", "SQLite", "Pydantic", "OpenCV"]
 repo: "https://github.com/k-portfolio/product-recognition-system"
-order: 1
+order: 2
 ---
 
 ## 概要
