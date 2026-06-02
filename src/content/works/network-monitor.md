@@ -3,7 +3,7 @@ title: "ネットワーク監視ツール"
 summary: "複数ホストの死活・応答を定期監視し、状態が変化したときだけ通知する自己ホスト型ツール。HTTP/TCP/ICMP対応、誤検知対策の状態判定、Docker・CI・テスト付き。"
 tech: ["Python", "FastAPI", "SQLite", "Docker", "GitHub Actions", "pytest"]
 repo: "https://github.com/k-portfolio/network-monitor"
-order: 1
+order: 2
 ---
 
 ## 概要
